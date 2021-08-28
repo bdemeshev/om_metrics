@@ -1,0 +1,235 @@
+% !TEX root = ../linal_lecture_02.tex
+
+\begin{frame} % название фрагмента
+
+\videotitle{Ранг оператора}
+
+\end{frame}
+
+
+
+\begin{frame}{Краткий план:}
+  \begin{itemize}[<+->]
+    \item Множество значений оператора;
+    \item Ранг оператора.
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Множество значений оператора}
+
+Любой вектор $\bv$ представим в виде:
+\[
+\bv = v_1 \be_1 + v_2 \be_2 + \ldots + v_n \be_n
+\]
+
+\pause
+По свойству линейности
+\[
+\LL \bv = v_1 \LL\be_1 + v_2 \LL\be_2 + \ldots + v_n\LL\be_n
+\]
+
+\pause
+\begin{block}{Утверждение}
+Множество значений оператора $\LL$ можно записать в виде линейной оболочки:
+\[
+\Image \LL  = \Span \{ \LL \be_1, \LL \be_2, \ldots, \LL \be_n  \}  
+\]
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{Ранг оператора}
+\begin{block}{Определение}
+    \alert{Рангом} линейного оператора $\LL$ называют размерность его образа:
+    \[
+      \rank \LL = \dim \Image \LL = \dim \Span \{ \LL\be_1, \LL\be_2, \ldots, \LL\be_n\}  
+    \]
+\end{block}
+\end{frame}
+
+\begin{frame}{Удаление компоненты вектора}
+
+$\LL : \begin{pmatrix}
+  a_1 \\
+  a_2 \\
+  a_3 \\
+\end{pmatrix} \to 
+\begin{pmatrix}
+  a_1 \\
+  a_3 \\
+\end{pmatrix}$
+
+\pause
+
+Действие оператора $\LL$ на базисных векторах $\be_1$, $\be_2$ и $\be_3$:
+
+$\LL : \begin{pmatrix}
+  1 \\
+  0 \\
+  0 \\
+\end{pmatrix} \to 
+\begin{pmatrix}
+1  \\
+0  \\
+\end{pmatrix}, \;
+\LL : \begin{pmatrix}
+  0 \\
+  1 \\
+  0 \\
+\end{pmatrix} \to 
+\begin{pmatrix}
+0 \\
+0 \\
+\end{pmatrix}, \;
+\LL : \begin{pmatrix}
+  0 \\
+  0 \\
+  1 \\
+\end{pmatrix} \to 
+\begin{pmatrix}
+0 \\
+1 \\
+\end{pmatrix}$
+
+\pause
+
+\[
+\Image \LL = \Span \left\{\begin{pmatrix}
+1 \\
+0 \\
+\end{pmatrix}, \;
+\begin{pmatrix}
+0 \\
+0 \\
+\end{pmatrix}, \;
+\begin{pmatrix}
+0 \\
+1 \\
+\end{pmatrix}
+\right\}    
+\]
+
+\pause 
+Базис для $\Image \LL$: $\left\{\begin{pmatrix}
+1 \\
+0 \\
+\end{pmatrix}, \;
+\begin{pmatrix}
+0 \\
+1 \\
+\end{pmatrix} \right\}$
+
+\[
+\rank \LL = \dim \Image \LL = 2    
+\]
+
+\end{frame}
+
+\begin{frame}{Ранг проекции}
+
+
+Если оператор $\HH$ проецирует векторы на прямую $\ell$, то $\Image \HH = \Span \ba$, где $\ba$ — любой ненулевой вектор, лежащий на прямой $\ell$.
+
+\pause
+
+Ранг оператора проецирования на прямую равен $\rank \HH = 1$.
+
+\pause
+
+Ранг оператора проецирования $\HH$ равен размерности того множества, на которое проецируют.
+
+\pause
+
+\begin{block}{Определение}
+Ранг оператора проецирования $\HH$ также называют \alert{следом оператора проецирования},
+$\trace \HH = \rank \HH$.
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}{Ранг поворота}
+
+Оператор $\Rot$ поворачивает плоскость на $30^{\circ}$ градусов против часовой стрелки.
+
+\pause
+
+Поворачивая различные векторы, можно получить любой вектор на плоскости, $\Image \Rot = \R^2$.
+
+\pause
+
+Базис образа: $\{ \be_1, \be_2 \}$, значит $\rank \Rot  = 2$.
+
+
+
+\end{frame}
+    
+
+
+\begin{frame}{Ограничения на ранг}
+
+\begin{block}{Утверждение}
+Ранг оператора $\LL: \R^n \to \R^k$ не превосходит ни $n$, ни $k$. 
+\end{block}
+
+\pause
+
+\begin{block}{Доказательство}
+Базис во всём $\R^k$ содержит $k$ элементов, значит базис образа не больше.
+\pause
+
+Образ получается как $\Span\{\LL \be_1, \LL\be_2, \ldots, \LL \be_n \}$.
+\end{block}
+\end{frame}
+
+\begin{frame}{Ранг произведения операторов}
+
+\begin{block}{Утверждение}
+Ранг произведения $\LL_1: \R^n \to \R^k$ и $\LL_2: \R^k \to \R^d$ не превосходит ранга сомножителей, $\rank (\LL_2 \LL_1) \leq \min \{\rank \LL_1, \rank \LL_2 \}$.
+\end{block}
+
+\pause
+\begin{block}{Доказательство}
+\[
+\Image(\LL_2\LL_1) \subset \Image(\LL_2)  
+\]
+\pause
+Если $\Image \LL_1 = \Span\{ \bv_1, \bv_2, \ldots, \bv_p \}$, то $\Image (\LL_2 \LL_1 ) =\Span\{ \LL_2 \bv_1, \LL_2 \bv_2, \ldots, \LL_2 \bv_p \}$.
+
+\end{block}
+\end{frame}
+  
+
+
+
+
+
+
+\begin{frame}{Ранг матрицы}
+
+\begin{block}{Определение}
+\alert{Рангом матрицы} называют ранг соответствующего оператора.
+\end{block}
+
+\pause
+
+\begin{block}{Утверждение}
+Ранг матрицы равен максимальному количеству линейно независимых столбцов матрицы. 
+\end{block}
+
+\pause
+\begin{block}{Доказательство}
+Именно эти линейно-независимые столбцы и будут базисом в линейной оболочке $\Image \LL$. 
+\end{block}
+
+
+\end{frame}
+
+
+
+

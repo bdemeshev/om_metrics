@@ -1,0 +1,130 @@
+\documentclass[14pt,xcolor=dvipsnames]{beamer}
+
+
+\input{preamble.tex}
+\usepackage{physics}
+
+
+
+% tikz block
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning,intersections,decorations.markings}
+\usetikzlibrary{patterns}
+
+\usepackage{tkz-euclide} 
+%\tikzset{>=latex}
+
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={5pt}}
+
+\colorlet{veca}{red}
+\colorlet{vecb}{blue}
+\colorlet{vecc}{olive}
+
+
+\newcommand{\grid}{\draw[color=gray,step=1.0,dotted] (-2.1,-2.1) grid (9.6,6.1)}
+
+% end tikz block
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rot}{\mathrm{R}}
+\newcommand{\HH}{\mathrm{H}}
+\newcommand{\Id}{\mathrm{I}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\la}{\lambda}
+
+
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bff}{\mathbf{f}} % \bf is already def
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bzero}{\mathbf{0}}
+
+
+\DeclareMathOperator{\Lin}{Span}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Image}{Image}
+\DeclareMathOperator{\LL}{L}
+
+
+
+
+
+
+
+\begin{document}
+
+
+\begin{frame} % название лекции
+
+
+\lecturetitle{Бутстрэп}
+
+\end{frame}
+
+
+\input{chapters/lec_020_fra_010_linear_combination.tex}
+
+\input{chapters/lec_020_fra_020_linear_span.tex}
+
+\input{chapters/lec_020_fra_030_vector_space.tex}
+
+\input{chapters/lec_020_fra_040_matrix.tex}
+
+
+\input{chapters/lec_020_fra_050_rank.tex}
+
+
+\begin{frame}
+
+\lecturetitle{Умножение матрицы на вектор}
+
+\todo{Это видеофрагмент с доской, слайдов здесь нет :)}
+
+\end{frame}
+
+
+
+\begin{frame}
+\lecturetitle{Умножение матрицы на матрицу}
+\todo{Это видеофрагмент с доской, слайдов здесь нет :)}
+\end{frame}
+    
+
+
+\begin{frame}
+\lecturetitle{Три взгляда на умножение матриц}
+\todo{Это видеофрагмент с доской, слайдов здесь нет :)}
+\end{frame}
+    
+
+\begin{frame}
+\lecturetitle{Решение системы уравнений методом Гаусса}
+\todo{Это видеофрагмент с доской, слайдов здесь нет :)}
+\end{frame}
+    
+
+\input{chapters/lec_020_fra_100_gauss_properties.tex}
+
+
+\begin{frame}
+\lecturetitle{Задача о шахматной доске}
+\todo{Это видеофрагмент с доской, слайдов здесь нет :)}
+\end{frame}
+
+
+\end{document}
