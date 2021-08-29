@@ -1,8 +1,8 @@
-% !TEX root = ../linal_lecture_02.tex
+% !TEX root = ../om_metrics_13.tex
 
 \begin{frame} % название фрагмента
 
-\videotitle{Системы линейных уравнений}
+\videotitle{Парный бутстрэп}
 
 \end{frame}
 
@@ -10,54 +10,49 @@
 
 \begin{frame}{Краткий план:}
   \begin{itemize}[<+->]
-    \item Однородная система и ядро оператора;
-    \item Структура множества решений.
+    \item Парный бутстрэп;
+    \item Плюсы и минусы.
   \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}{Варианты записи системы}
+\begin{frame}{Парный бутстрэп — это просто!}
 
-Скалярный: 
-$\begin{cases}
-5x_1 + 6x_2 = 8 \\
-3x_1 + 7x_2 = 9 \\
-\end{cases}$
+На примере модели $y_i = \beta_1 + \beta_x x_i + \beta_w w_i + u_i$.
 
-\pause
+Есть исходные наблюдения $(x_i, w_i, y_i)$, где $i \in \{1, \ldots, n\}$
 
-Векторный:
-$x_1 \begin{pmatrix}
-    5 \\
-    3 
-\end{pmatrix} + 
-x_2 \begin{pmatrix}
-    6 \\
-    7
-\end{pmatrix} = 
-\begin{pmatrix}
-    8 \\
-    9
-\end{pmatrix}$.
-\pause
+\begin{enumerate}[<+->]
+    \item Сгенерируем первую бутстрэп-выборку $(x^*_i, w^*_i, y^*_i)$, где $i \in \{1, \ldots, n\}$
+    
+    Случайно выберем $n$ наблюдений из исходной выборки с повторениями.
+    \item Посчитаем очередное значение интересующей нас статистики $\hat m^*_j$ или $t^*_j$.
+    \item Повторим первые два шага много раз: $j = 1, \ldots, 10000$.
+\end{enumerate}
+\end{frame}
 
-Матричный:
-$\begin{pmatrix}
-    5 & 6 \\
-    3 & 7 \\
-\end{pmatrix} \cdot 
-\begin{pmatrix}
-    x_1 \\
-    x_2 \\
-\end{pmatrix} = \begin{pmatrix}
-    8 \\
-    9 \\
-\end{pmatrix}$.
+\begin{frame}{Доверительный интервал}
+
+\begin{block}{Наивный вариант}
+\[
+\qL(\hat m^*) \leq m \leq \qR(\hat m^*)
+\]
+\end{block}
+
+\begin{block}{Вариант с $t$-статистикой}
+Находим $m$ из неравенства
+\[
+\qL(\hat t^*) \leq \frac{\hat m - m}{se(\hat m)} \leq \qR(\hat t^*)    
+\]
+Получаем 
+\[
+\hat m  - se(\hat m) \qR(\hat t^*) \leq m \leq \hat m - se(\hat m) \qL(\hat t^*)      
+\]
+\end{block}
 
 
 \end{frame}
-
 
 \begin{frame}{Однородная и неоднородная системы}
 
@@ -211,22 +206,50 @@ $\alpha_1$, \ldots, $\alpha_k$ — произвольные числа.
 
 
 
-\begin{frame}{Резюме}
+\begin{frame}{Источники мудрости}
+
+\begin{enumerate}[<+->]
+    \item Tim Hestenberg, What Teachers Should Know about the Bootstrap.
+    \item James MacKinnon, Bootstrap Methods in Econometrics.
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{Резюме: бутстрэп до регрессии}
 
 
 \begin{itemize}[<+->]
-\item Линейная комбинация и линейная оболочка.
-\item Абстрактное векторное пространство.
-\item Матрица линейного оператора.
-\item Ранг оператора. 
-\item Умножение матрицы на вектор и на матрицу.
-\item Решение системы методом Гаусса.
-\item Бонус: задача о шахматной доске.
+\item Бутстрэп: оценка распределения вместо теорем.
+\item Наивный бутстрэп: сгенерируем много значений величины $\hat m^*_j$. 
+\item Бутстрэп $t$-статистики: сгенерируем много значений 
+\[
+t^*_j = \frac{\hat m^*_j - \hat m}{se(m^*_j)}
+\]
+\item Бутстрэп в бутстрэпе: способ получить $se(m^*_j)$, если нет явной формулы.
 \end{itemize}
+
+
+\end{frame}
+    
+\begin{frame}{Резюме: бутстрэп и регрессия}
+
+
+\begin{itemize}[<+->]
+\item Параметрический бутстрэп: 
+\[
+    y_i^* = \hat \beta_1 + \hat\beta_2 x_i + u_i^*, \quad u_i^* \sim \cN(0;\hat\sigma^2)
+\]
+\item Дикий бутстрэп: 
+\[
+    y_i^* = \hat \beta_1 + \hat\beta_2 x_i + \hat u_i^{sc} v_i^*, \quad v_i^* \in \{-1, +1\}
+\]
+\item Парный бутстрэп: выбираем случайные наблюдения с повторениями.
+\end{itemize}
+
 \pause
-\alert{Следующая лекция:} определитель и обратная матрица.
 
-
+\alert{Следующая лекция:} причинно-следственные связи.
 
 \end{frame}
     
