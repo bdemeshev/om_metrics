@@ -18,7 +18,7 @@ $(file_name).pdf: $(file_name).tex chapters/ figures/ preamble.tex
 
 png:
 	mkdir -p slides
-	pdftocairo $(file_name).pdf slides/om_mtrcs-$(file_name) -png -r 300 -transp 
+	pdftocairo $(file_name).pdf slides/om_mtrcs -png -r 300 -transp 
 
 clean:
 	latexmk -c $(file_name).tex

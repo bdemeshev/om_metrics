@@ -10,8 +10,8 @@
 
 \begin{frame}{Краткий план:}
   \begin{itemize}[<+->]
-    \item Парный бутстрэп;
-    \item Плюсы и минусы.
+    \item Парный бутстрэп.
+    \item Практические рекомендации.
   \end{itemize}
 
 \end{frame}
@@ -24,10 +24,11 @@
 Есть исходные наблюдения $(x_i, w_i, y_i)$, где $i \in \{1, \ldots, n\}$
 
 \begin{enumerate}[<+->]
-    \item Сгенерируем первую бутстрэп-выборку $(x^*_i, w^*_i, y^*_i)$, где $i \in \{1, \ldots, n\}$
+    \item Генерируем очередную бутстрэп-выборку $(x^*_i, w^*_i, y^*_i)$, где $i \in \{1, \ldots, n\}$.
     
     Случайно выберем $n$ наблюдений из исходной выборки с повторениями.
-    \item Посчитаем очередное значение интересующей нас статистики $\hat m^*_j$ или $t^*_j$.
+\item Считаем очередную бутстрэп оценку коэффициента $\hat \beta^*_{xj}$ или $t$-статистику 
+$t^*_{j} = (\hat \beta^*_{xj} - \hat\beta_x)/se(\hat \beta^*_{xj})$.
     \item Повторим первые два шага много раз: $j = 1, \ldots, 10000$.
 \end{enumerate}
 \end{frame}
@@ -36,170 +37,52 @@
 
 \begin{block}{Наивный вариант}
 \[
-\qL(\hat m^*) \leq m \leq \qR(\hat m^*)
+\qL(\hat \beta_x^*) \leq \beta_x \leq \qR(\hat \beta_x^*)
 \]
 \end{block}
 
 \begin{block}{Вариант с $t$-статистикой}
-Находим $m$ из неравенства
+Находим $\beta_x$ из неравенства
 \[
-\qL(\hat t^*) \leq \frac{\hat m - m}{se(\hat m)} \leq \qR(\hat t^*)    
+\qL(t^*) \leq \frac{\hat \beta_x - \beta_x}{se(\hat \beta_x)} \leq \qR(t^*)    
 \]
 Получаем 
 \[
-\hat m  - se(\hat m) \qR(\hat t^*) \leq m \leq \hat m - se(\hat m) \qL(\hat t^*)      
+\hat \beta_x  - se(\hat \beta_x) \qR(t^*) \leq \beta_x \leq \hat \beta_x - se(\hat \beta_x) \qL(t^*)      
 \]
 \end{block}
 
-
-\end{frame}
-
-\begin{frame}{Однородная и неоднородная системы}
-
-\begin{block}{Определение}
-    Система уравнений $A\bx = 0$ называется \alert{однородной}.
-\end{block}
-\pause
-
-Однородная система: 
-$\begin{pmatrix}
-    5 & 6 \\
-    3 & 7 \\
-\end{pmatrix} \cdot 
-\begin{pmatrix}
-    x_1 \\
-    x_2 \\
-\end{pmatrix} = \begin{pmatrix}
-    0 \\
-    0 \\
-\end{pmatrix}$.
-\pause
-
-Неоднородная система: 
-$\begin{pmatrix}
-    5 & 6 \\
-    3 & 7 \\
-\end{pmatrix} \cdot 
-\begin{pmatrix}
-    x_1 \\
-    x_2 \\
-\end{pmatrix} = \begin{pmatrix}
-    8 \\
-    9 \\
-\end{pmatrix}$.
-
-
 \end{frame}
 
 
 
-\begin{frame}{Ядро оператора}
-
-\begin{block}{Определение}
-\alert{Ядром} линейного оператора $\LL: \R^n \to \R^k$ называется множество векторов,
-которые под действием $\LL$ превращаются в $\bzero \in \R^k$: 
-\[
-\ker \LL = \{ \bv \in \R^n \mid \LL \bv = \bzero \}    
-\]
-\end{block}
-
-\pause
-Чтобы найти ядро $\LL$ нужно решить однородную систему $\LL \bv = \bzero$.
-
-\end{frame}
 
 
+\begin{frame}{Бутстрэп: рекомендации}
 
-\begin{frame}{Метод Гаусса}
-
-Основная идея: по очереди избавиться от всех неизвестных.
-\pause
-
-\begin{block}{Алгоритм}
-\begin{enumerate}
-    \item Выберем первое уравнение так, чтобы в нём была переменная $x_1$.
-    \pause
-    \item Вычитаем первое уравнение из остальных так, чтобы в них пропала переменная $x_1$.
-    \pause
-    \item Зафиксируем первое уравнение и работаем с остальными. 
+\alert{Общие}
+\begin{enumerate}[<+->]
+    \item Используйте бутстрэп!
+    \item Берите большое количество (10000) бутстрэп выборок. 
 \end{enumerate}
-\end{block}
-
 
 \pause
-В финальной системе в каждом следующем уравнении меньше неизвестных, чем в предыдущем.
-
-
-
-\end{frame}
-
-
-
-\begin{frame}{Ступенчатый вид}
-
-
-После применения метода Гаусса система примет ступенчатый вид:
-\[
-\left[
-\begin{array}{ccccc|c}
-\textcolor{red}{2} & 0 & 3 & -1 & 5 & 2 \\
-0 & \textcolor{red}{1} & 1 & -1 & -2 & 3 \\
-0 & 0 & 0 & \textcolor{red}{3} & 0 & -1 \\
-\end{array}
-\right]
-\]
+Бутстрэп — идея, а не конкретный метод. Какой выбрать?
 
 \pause
-Неизвестные, лежащие в начале «ступеньки», называются \alert{главными}, а остальные —
-\alert{свободными}.
+\alert{Без регрессоров}
 
-Главные переменные можно выразить через свободные.
-
-\end{frame}
-
-
-
-
-
-\begin{frame}{Количество решений}
-\begin{block}{Утверждение}
-Система уравнений $A \bx = \bb$ имеет ноль, одно или бесконечное количество решений. 
-\end{block}
-\pause
-
-\begin{block}{Доказательство}
-После применения метода Гаусса последнее уравнение, в котором хотя бы один коэффициент 
-отличен от нуля, окажется одного из трёх видов:
-\[
-\begin{array}{l}
-A: 0x_1 + 0x_2 + 0x_3 + 0x_4 = 7, \text{ нет решений.}\\    
-B: 0x_1 + 0x_2 + 0x_3 + 5x_4 = 7, \text{ хотя бы одно решение.} \\
-C: 0x_1 + 3x_2 + 2x_3 + 5x_4 = 7, \text{ бесконечное количество.} \\
-\end{array}
-\]
-\end{block}
-\pause
-
-В случае C мы получаем в последнем уравнении свободу выбора $x_3$ и $x_4$.
-
-\end{frame}
-
-
-
-\begin{frame}{Структура множества решений}
-
-\begin{block}{Утверждение}
-Если решений бесконечное множество, то ответ можно записать в виде:
-\[
-\bx = \ba + \alpha_1 \bv_1 + \ldots + \alpha_k \bv_k,
-\]
-где $\ba$, $\bv_1$, \ldots, $\bv_k$ — конкретные векторы, а
-$\alpha_1$, \ldots, $\alpha_k$ — произвольные числа. 
-\end{block}
+\begin{enumerate}[<+->]
+    \item Смело берите бутстрэп $t$-статистики.
+    \item Если формулы для стандартных ошибок нет, попробуйте наивный бутстрэп или бутстрэп в бутстрэпе.
+\end{enumerate}    
 
 \pause
-Для однородной системы $\ba=\bzero$, 
-    а число $k$ является размерностью множества решений, $k=\dim\ker A$.
+\alert{С регрессорами}
+\begin{enumerate}[<+->]
+    \item Смело берите дикий бутстрэп $t$-статистики.
+    \item Если матрица регрессоров $X$ не фиксирована, попробуйте парный бутстрэп.
+\end{enumerate}    
 
 \end{frame}
 
@@ -232,17 +115,20 @@ t^*_j = \frac{\hat m^*_j - \hat m}{se(m^*_j)}
 
 \end{frame}
     
+
+
+
 \begin{frame}{Резюме: бутстрэп и регрессия}
 
 
 \begin{itemize}[<+->]
 \item Параметрический бутстрэп: 
 \[
-    y_i^* = \hat \beta_1 + \hat\beta_2 x_i + u_i^*, \quad u_i^* \sim \cN(0;\hat\sigma^2)
+    y_i^* = \hat \beta_1 + \hat\beta_x x_i + \hat\beta_w w_i + u_i^*, \quad u_i^* \sim \cN(0;\hat\sigma^2)
 \]
 \item Дикий бутстрэп: 
 \[
-    y_i^* = \hat \beta_1 + \hat\beta_2 x_i + \hat u_i^{sc} v_i^*, \quad v_i^* \in \{-1, +1\}
+    y_i^* = \hat \beta_1 + \hat\beta_x x_i + \hat\beta_w w_i + \hat u_i^{sc} v_i^*, \quad v_i^* \in \{-1, +1\}
 \]
 \item Парный бутстрэп: выбираем случайные наблюдения с повторениями.
 \end{itemize}
