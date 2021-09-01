@@ -1,3 +1,10 @@
+# Заготовка скрипта 1-4
+
+# If you can't see cyrillic letters then:
+# 1. Go to File - Reopen with encoding -
+# 2. Select UTF-8
+# 3. Enjoy!
+
 library(tidyverse) # манипуляции с данными
 library(skimr) # описательные статистики
 
