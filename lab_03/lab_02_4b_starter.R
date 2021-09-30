@@ -6,6 +6,7 @@ library(car) # проверка сложных гипотез
 library(lmtest) # тесты для моделей
 library(texreg) # таблички для сравнения моделей
 library(rio) # import / export всех форматов
+library(sjlabelled) # работа с меченными переменными
 
 v28 = import('r28i_os_32.sav')
 glimpse(v28)

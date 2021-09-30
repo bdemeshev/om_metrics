@@ -1,3 +1,9 @@
+.Rhistory
+
+# rlms database
+*.sav 
+
+# tex
 *.nav
 *.snm
 *.xdv
