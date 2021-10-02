@@ -4,6 +4,7 @@
 *.sav 
 
 # tex
+*.vrb
 *.nav
 *.snm
 *.xdv
