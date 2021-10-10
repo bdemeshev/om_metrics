@@ -1,5 +1,17 @@
 .Rhistory
 
+# results of demo Rmd rendering
+lab_05/nano_research.docx
+lab_05/nano_research.html
+lab_05/nano_research.tex
+lab_05/nano_research.pdf
+lab_05/nano_presentation_files/
+lab_05/nano_presentation.html
+
+
+
+
+
 # rlms database
 *.sav 
 
