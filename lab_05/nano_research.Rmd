@@ -1,0 +1,62 @@
+---
+title: "Нано исследование"
+author: "Винни-Пух"
+date: "Сегодня!"
+language: RU-ru
+output:
+  html_document: default
+  word_document: default
+---
+
+Подключим нужные нам пакеты!
+
+```{r setup, include=FALSE}
+library(skimr) # описательные статистики (вместо psych в видеолекциях)
+library(lmtest) # тестирование гипотез в линейных моделях
+library(rio) # загрузка данных в разных форматах (вместо foreign в видеолекциях)
+library(vcd) # мозаичные графики
+library(hexbin) # двумерный график с шестиугольниками
+library(sjPlot) # визуализация результатов регрессии
+library(tidyverse) # графики и манипуляции с данными, подключаются пакеты dplyr, ggplot2, etc
+library(tidymodels) # удобства для манипуляций с моделями
+library(huxtable) # несколько таблиц вместе
+library(knitr) # Rmd
+opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+Загрузим наши данные:
+
+```{r load}
+f = import('flats_moscow.txt')
+f = mutate_at(f, vars(walk, brick, floor, code), factor)
+```
+
+В нашем наборе данных `r nrow(f)` квартир.
+Средняя стоимость квартиры `r round(mean(f$price), 0)` тыс. долларов.
+
+Построим график
+
+```{r}
+qplot(data = f, x = log(totsp),
+      y = log(price)) +
+  labs(x = 'Логарифм общей площади квартиры (м2)',
+       y = 'Логарифм цены квартиры (тыс. долл.)',
+       title = 'Соотношение цены и площади квартиры в Москве')
+```
+
+Оценим простенькую модель и ещё две :)
+
+$$\ln price_i = \beta_1 + \beta_2 \ln totsp_i + u_i$$
+```{r, results='asis'}
+m1 = lm(data = f, log(price) ~ log(totsp))
+m2 = lm(data = f, log(price) ~ log(totsp) + brick)
+m3 = lm(data = f,
+        log(price) ~ log(totsp) + brick +
+                        brick:log(totsp))
+
+reg_table = huxreg(m1, m2, m3)
+print_md(reg_table)
+```
+
+
+
