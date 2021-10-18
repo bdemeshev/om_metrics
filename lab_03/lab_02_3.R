@@ -7,10 +7,10 @@ library(lmtest) # тесты для моделей
 library(texreg) # таблички для сравнения моделей
 library(rio) # import / export всех форматов
 
-demo = import('~/Documents/coursera_metrics/lab_02/demo.xlsx')
+demo = import('~/Documents/om_metrics/datasets/demo.xlsx')
 demo
 
-setwd("~/Documents/coursera_metrics/lab_02")
+setwd("~/Documents/om_metrics/datasets/lab_02")
 demo = import('demo.xlsx')
 demo
 
