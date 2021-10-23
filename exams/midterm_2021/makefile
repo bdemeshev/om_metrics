@@ -2,7 +2,7 @@
 # v 2.0
 # makefile: tex -> pdf
 # v 2.0
-file_name = probability_pictures
+file_name = midterm_fall_2021
 
 $(file_name).pdf: $(file_name).tex
 	# protection against biber error
