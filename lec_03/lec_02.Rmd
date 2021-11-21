@@ -1,6 +1,6 @@
 ---
 title: "Статистические свойства оценок"
-lang: russian
+lang: ru-RU
 babel-lang: russian
 header-includes: 
   - \usepackage{etex}
@@ -56,13 +56,13 @@ $E(s|r)$ — это случайная величина $\tilde{s}$:
 Теорема: 
 
 Если величина $r$ дискретна и принимает значения $a$, $b$ или $c$, то 
-\[
+$$
 E(s|r)=\begin{cases}
 E(s|r=a), \text{ если } r=a \\
 E(s|r=b), \text{ если } r=b \\
 E(s|r=c), \text{ если } r=c 
 \end{cases}
-\]
+$$
 
 ## Задача [у доски]
 
@@ -80,9 +80,9 @@ $s=10$| 0.25  | 0.3
 Теорема: 
 
 Если пара величин $r$, $s$ имеет функцию плотности $f(r, s)$,  то 
-\[
+$$
 E(s|r)=\int_{-\infty}^{\infty} s \cdot f(s|r) dx
-\]
+$$
 
 где $f(s|r)=f(r, s)/f(r)$ — условная функция плотности
 
@@ -179,18 +179,18 @@ $Var(s)=Var(E(s|r))+E(Var(s|r))$
 
 Ковариационная матрица вектора $\varepsilon$:
 
-\[
+$$
 Var(\varepsilon)=\begin{pmatrix}
 Var(\varepsilon_1) & Cov(\varepsilon_1,\varepsilon_2) & Cov(\varepsilon_1,\varepsilon_3) & \ldots \\
 Cov(\varepsilon_2,\varepsilon_1) & Var(\varepsilon_2) &  Cov(\varepsilon_2,\varepsilon_3) & \ldots \\
 Cov(\varepsilon_3,\varepsilon_1) & Cov(\varepsilon_3,\varepsilon_2) & Var(\varepsilon_3) &   \ldots \\
 \vdots & & 
 \end{pmatrix}
-\]
+$$
 
 ## Запись предпосылок с помощью ковариационной матрицы
 
-\[
+$$
 Var(\varepsilon|X) = \begin{pmatrix}
 \sigma^2 & 0 & 0 & \ldots \\
 0 & \sigma^2 & 0 & \ldots \\
@@ -203,7 +203,7 @@ Var(\varepsilon|X) = \begin{pmatrix}
 0 & 0 & 1 & \ldots \\
 \vdots & \vdots &  \vdots & \\
 \end{pmatrix}=\sigma^2 \cdot I_{n\times n}
-\]
+$$
 
 ## Дисперсия и ковариация оценок коэффициентов
 
@@ -241,9 +241,9 @@ Var(\varepsilon|X) = \begin{pmatrix}
 - А вот как раз и придумали, чтобы всё аналогично просто считалось! Настоящая безусловная дисперсия оценок коэффициентов — гораздо сложнее, чем условная.
 
 ##  Теорема (без доказательства):
-\[
+$$
 Var(\hat{\beta}_j| X)=\sigma^2/RSS_j
-\]
+$$
 $RSS_j$ — сумма квадратов остатков в регрессии $j$-ой объясняющей переменной на остальные объясняющие переменные (включая константу)
 
 
@@ -306,14 +306,14 @@ $Var(\hat{\beta}|X)=\sigma^2 (X'X)^{-1}$
 
 ## Оценка ковариационной матрицы
 
-\[
+$$
 \widehat{Var}(\hat{\beta}|X)=\begin{pmatrix}
 \widehat{Var}(\hat{\beta}_1|X) & \widehat{Cov}(\hat{\beta}_1,\hat{\beta}_2|X) & \widehat{Cov}(\hat{\beta}_1,\hat{\beta}_3|X) & \ldots \\
 \widehat{Cov}(\hat{\beta}_2,\hat{\beta}_1|X) & \widehat{Var}(\hat{\beta}_2|X) &  \widehat{Cov}(\hat{\beta}_2,\hat{\beta}_3|X) & \ldots \\
 \widehat{Cov}(\hat{\beta}_3,\hat{\beta}_1|X) & \widehat{Cov}(\hat{\beta}_3,\hat{\beta}_2|X) & \widehat{Var}(\hat{\beta}_3|X) &   \ldots \\
 \vdots & & 
 \end{pmatrix}
-\]
+$$
 
 
 * ЛИНАЛ: $\widehat{Var}(\hat{\beta} | X)=\hat{\sigma}^2 \cdot (X'X)^{-1}$
@@ -553,9 +553,9 @@ $y^{st}_i=\beta_1^{st}+\beta_2^{st}x_i^{st}+\beta_3^{st}z_i^{st}+\varepsilon_i^{
 
 Статистика $t=\frac{\hat{\beta}_2-\hat{\beta}_3-(\beta_2-\beta_3)}{se(\hat{\beta}_2-\hat{\beta}_3)}$  распределена
 
-* асимптитически $N(0,1)$
+* асимптотически — $N(0,1)$
 
-* при нормальности $t_{n-k}$
+* при нормальности ошибок — $t_{n-k}$
 
 ## Переформулировка модели
 
