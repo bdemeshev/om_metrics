@@ -1,3 +1,13 @@
+% arara: xelatex
+%% arara: xelatex
+
+
+% https://koalatea.io/r-knn-regression/
+% http://freerangestats.info/blog/2017/04/09/propensity-v-regression
+% https://economics.stackexchange.com/questions/45335/what-is-the-difference-between-ate-and-att
+% https://kosukeimai.github.io/MatchIt/articles/matching-methods.html
+
+
 \documentclass[14pt,xcolor=dvipsnames]{beamer}
 
 
@@ -66,8 +76,12 @@ cross/.default={5pt}}
 \DeclareMathOperator{\Lin}{Span}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Image}{Image}
-\DeclareMathOperator{\LL}{L}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\plim}{plim}
 
+
+\newcommand{\graylink}[1]{{\fontsize{11}{12}\selectfont \textcolor{gray}{#1}}}
+\newcommand{\figcaption}[1]{{\fontsize{18}{20}\selectfont #1}}
 
 
 
@@ -79,24 +93,14 @@ cross/.default={5pt}}
 \begin{frame} % название лекции
 
 
-\lecturetitle{Причинно-следственные связи}
+\lecturetitle{Метод ближайших соседей и мэтчинг}
 
 \end{frame}
 
 
-\input{chapters/14_01_experiment.tex}
+\input{chapters/14_01_knn.tex}
 
-\input{chapters/14_06_cuped.tex}
-
-\input{chapters/14_02_dnd.tex}
-
-\input{chapters/14_03_event_analysis.tex}
-
-\input{chapters/14_04_matching.tex}
-
-\input{chapters/14_05_rdd.tex}
-
-
+\input{chapters/14_03_matching.tex}
 
 
 

@@ -1,16 +1,17 @@
 file_name = om_metrics_14
 
-$(file_name).pdf: $(file_name).tex chapters/ figures/ preamble.tex
+$(file_name).pdf: $(file_name).tex chapters/*.tex figures/ preamble.tex
 	# protection against biber error
 	# http://tex.stackexchange.com/questions/140814/
 	rm -rf `biber --cache`
 
 	# create pdf
 	# will automatically run pdflatex/biber if necessary
-	latexmk -xelatex $(file_name).tex
+	# latexmk -xelatex $(file_name).tex
+	arara -v $(file_name).tex
 
 	# clean auxillary files
-	latexmk -c $(file_name).tex
+	# latexmk -c $(file_name).tex
 
 	echo
 	echo ---------------------------
@@ -25,4 +26,8 @@ clean:
 	-rm *.nav
 	-rm *.snm
 	-rm *.xdv
+	-rm *.blg
+	-rm *.bbl
+	-rm *.log
+	-rm *.pdf
 
