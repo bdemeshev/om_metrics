@@ -14,13 +14,16 @@ intrain = createDataPartition(y = flats$price, p = 0.8, list = FALSE)
 training = flats[intrain,]
 testing = flats[-intrain,]
 
-train_params = trainControl(method = "repeatedcv", number = 10, repeats = 3)
+train_params = trainControl(method = "repeatedcv",
+                            number = 10,
+                            repeats = 3)
 set.seed(777)
 knn_fit <- train(price ~ ., data = training, method = "knn",
                  trControl  = train_params,
                  preProcess = c("center", "scale"),
                  tuneLength = 5)
 knn_fit
+predict(knn_fit, testing)
 
 reg_fit = train(price ~ ., data = training, method = "lm",
                          trControl  = train_params,
