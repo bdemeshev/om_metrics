@@ -127,7 +127,7 @@ a_i \to  \frac{a_i - \min(a)}{\max(a) - \min(a)}.
 
   Способ 2:
   \[
-  a_i \to \frac{a_i - \bar a}{\sqrt{\frac{\sum (a_i - \bar a)^2}{n - 1}}}.
+  a_i \to \frac{a_i - \bar a}{\sqrt{\frac{\sum (a_j - \bar a)^2}{n - 1}}}.
   \]
   
   \pause 
@@ -145,10 +145,9 @@ a_i \to  \frac{a_i - \min(a)}{\max(a) - \min(a)}.
 
 \begin{frame}{Избавиться от единиц измерения!}
 
-  Способ 3: метрика Махаланобиса.
-   \[
-   x_i \to \left(\widehat{ \Var }(x_i)\right)^{-0.5} (x_i - \bar x)
-   \]
+  Способ 3: «метрика Махаланобиса»
+  
+  Матрицу центрированных переменных умножаем слева на корень из выборочной ковариационной матрицы.
 
 \pause
 
